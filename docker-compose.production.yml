@@ -15,6 +15,8 @@ services:
   backend:
     image: levitan77/kittygram_backend # Качаем с Docker Hub
     env_file: .env
+    depends_on:
+      - db
     volumes:
       - static:/backend_static
       - media:/media
@@ -29,6 +31,9 @@ services:
     env_file: .env
     ports:
       - 9000:80
+    depends_on:
+      - backend
+      - frontend
     volumes:
       - static:/static
       - media:/media
